@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      table {
+        table-layout: fixed;
+      }
+      #buttons {
+        text-align: center;
+      }
+      button {
+        border-radius: 10px;
+        border: 2px solid black;
+      }
+      button:hover {
+        cursor: pointer;
+        background-color: grey;
+      }
+      #buttomRow {
+        background-color: grey;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Grades</h1>
+    <table>
+      <thead>
+        <tr>
+          <th>StudentID</th>
+          <th>CourseName</th>
+          <th>CourseGrade</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><input id="cid" type="text" /></td>
+          <td><input id="cname" type="text" /></td>
+          <td><input id="cgrade" type="text" /></td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr id="buttomRow">
+          <td>Actions</td>
+          <td id="buttons" colspan="2">
+            <button id="addGrade" onclick="addGrade()">Add Grade</button>
+            <button id="getGrade" onclick="getGrade()">Get Grades</button>
+          </td>
+        </tr>
+      </tfoot>
+    </table>
+    <script>
+      class Record {
+        constructor(sid, cname, cgrade) {
+          this.sid = sid;
+          this.cname = cname;
+          this.cgrade = cgrade;
+        }
+
+        toString() {
+          return `id: ${this.sid}, course: ${this.cname}, grade: ${this.cgrade}\n`;
+        }
+      }
+      grades = [];
+
+      function addGrade() {
+        const inputCid = document.getElementById("cid");
+        const inputCname = document.getElementById("cname");
+        const inputCgrade = document.getElementById("cgrade");
+
+        const vCid = inputCid.value;
+        const vCname = inputCname.value;
+        const vCgrade = inputCgrade.value;
+
+        if (vCid != "" && vCname != "" && vCgrade != "") {
+          const record = new Record(vCid, vCname, vCgrade);
+          grades.push(record);
+          alert(record);
+        } else {
+          alert("Please include all the inputs");
+        }
+      }
+
+      function getGrade() {}
+    </script>
+  </body>
+</html>
